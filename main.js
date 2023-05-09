@@ -16,18 +16,28 @@ const rl = readline.createInterface({
 const prompt = 'Enter your prompt:';
 
 rl.question(prompt, (input) => {
-    api.createCompletion(
+    api.createChatCompletion(
         {
-            model: 'text-davinci-003',
-            max_tokens: 100,
+            model: 'gpt-3.5-turbo',
+            messages: [
+                {
+                    role: "user",
+                    content: input
+                }
+            ],
+            max_tokens: 256,
             temperature: 0,
-            prompt: input,
         }
     ).then((response)=>{
-        const text = response.data.choices[0].text;
+        const text = response.data.choices[0].message.content;
         console.log(text);
     }).catch((error)=>{
-        console.log(error);
+        if(error.response){
+            console.log(error.response.data);
+            console.log(error.response.status);
+        } else {
+            console.log(error.messages);
+        }
     });
     
     rl.close();
