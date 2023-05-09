@@ -23,6 +23,10 @@ rl.question(prompt, (input) => {
                 {
                     role: "user",
                     content: input
+                },
+                {
+                    role: "system",
+                    content: "speak as if you were Sana from the k-pop group TWICE."
                 }
             ],
             max_tokens: 256,
