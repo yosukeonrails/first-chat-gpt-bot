@@ -32,10 +32,10 @@ rl.question(prompt, (input) => {
             max_tokens: 256,
             temperature: 0,
         }
-    ).then((response)=>{
+    ).then((response)=> {
         const text = response.data.choices[0].message.content;
         console.log(text);
-    }).catch((error)=>{
+    }).catch((error)=> {
         if(error.response){
             console.log(error.response.data);
             console.log(error.response.status);
